@@ -69,18 +69,18 @@ export default {
     async infiniteScroll($state) {
       this.page++
       await fetch(this.url)
-        .then(res => res.json())
-        .then(res => {
-          if (res.results.length > 1) {
-            this.chars.push(...res.results)
-            // this.chars = this.chars.concat(res.results)
-            $state.loaded()
-          } else {
-            $state.complete()
-          }
-        }).catch((err) => {
-          console.log(err)
-        })
+          .then(res => res.json())
+          .then(res => {
+            if (res.results.length > 1) {
+              this.chars.push(...res.results)
+              // this.chars = this.chars.concat(res.results)
+              $state.loaded()
+            } else {
+              $state.complete()
+            }
+          }).catch((err) => {
+            console.log(err)
+          })
     },
     getStatus(status) {
       return {
@@ -88,7 +88,8 @@ export default {
         alive: status.toLowerCase() === 'alive'
 
       }
-    },
+    }
+  },
   computed: {
     url() {
       return 'https://rickandmortyapi.com/api/character?page=' + this.page
